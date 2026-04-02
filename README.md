@@ -1,6 +1,6 @@
 # CarHiring
 
-The whole project of Car Hiring System is developed using the complete Model-View-Controller pattern.
+The whole project of Car Rental System is developed using the complete Model-View-Controller pattern.
 
 I have used the 2 patterns to support the MVC which are given below.
 
@@ -10,7 +10,7 @@ I have used the 2 patterns to support the MVC which are given below.
 2: Factory Pattern
    It is used to create the controllers with full package including model and views. It makes them ready to use and return them.
    
-As we used the serialized database in our system, so there are 3 different files which will be generated through system.
+As I used the serialized database in our system, so there are 3 different files which will be generated through system.
 
 1: cars.ser
    It contains all of the serialized Car class objects.
