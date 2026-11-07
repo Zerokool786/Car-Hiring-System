@@ -66,14 +66,17 @@ public class CustomerModel extends Model {
      * To add the customer booking in
      * the database.
      *
-     * @param index of car
      * @param customer booking
      *
-     * @return booking done.
+     * @return booking done, or null if the car is not found.
      */
-    public Booking addCustomerBooking(int index, Customer customer) {
+    public Booking addCustomerBooking(Customer customer) {
 
-        if (index < 0 || index > carList.size()) {
+        // The customer picks from the list of available cars only,
+        // so its position does not match the full car list.
+        // Find the car in the full list by name instead.
+        int index = findCarIndex(customer.getBookedCar());
+        if (index == -1) {
             return null;
         }
         Booking booking = new Booking(customer, customer.getBookedCar().getCarAvailableDate());
@@ -84,6 +87,27 @@ public class CustomerModel extends Model {
         this.updateCustomerDetails();
         this.updateBookingDetails();
         return booking;
+
+    }
+
+    /**
+     * Finds the position of a car in the full car list.
+     *
+     * @param car to look for
+     *
+     * @return position of the car, or -1 if it is not in the list.
+     */
+    private int findCarIndex(Car car) {
+
+        if (car == null) {
+            return -1;
+        }
+        for (int i = 0; i < carList.size(); i++) {
+            if (carList.get(i).getName().equals(car.getName())) {
+                return i;
+            }
+        }
+        return -1;
 
     }
 

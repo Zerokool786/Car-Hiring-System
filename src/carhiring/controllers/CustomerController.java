@@ -80,7 +80,6 @@ public class CustomerController extends Controller implements ChangeListener<Loc
 
                 if (returnDate != null) {
                     days = Period.between(LocalDate.now(), returnDate).getDays();
-                    int index = getCustomerView().getAvailableCarsTable().getSelectionModel().getSelectedIndex();
                     Car selectedCar = getCustomerView().getAvailableCarsTable().getSelectionModel().getSelectedItem();
                     if (selectedCar != null && days > 0) {
 
@@ -94,7 +93,7 @@ public class CustomerController extends Controller implements ChangeListener<Loc
                             Customer customer = new Customer(name, address, license, selectedCar);
                             selectedCar.setAvailable(false);
                             selectedCar.setCarAvailableDate(returnDate);
-                            Booking booking = getCustomerModel().addCustomerBooking(index, customer);
+                            Booking booking = getCustomerModel().addCustomerBooking(customer);
                             getCustomerView().getAvailableCarsTable().getItems().clear();
                             getCustomerView().getAvailableCarsTable().getItems().addAll(getCustomerModel().getAvailableCars());
 
